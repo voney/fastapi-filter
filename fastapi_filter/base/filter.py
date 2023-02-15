@@ -186,7 +186,7 @@ def _list_to_str_fields(Filter: Type[BaseFilterModel]):
     ret: Dict[str, Tuple[Union[object, Type], Optional[FieldInfo]]] = {}
     for f in Filter.__fields__.values():
         field_info = deepcopy(f.field_info)
-        if f.shape == fields.SHAPE_LIST:
+        if f.shape in [fields.SHAPE_LIST, fields.SHAPE_TUPLE]:
             if isinstance(field_info.default, Iterable):
                 field_info.default = ",".join(field_info.default)
             ret[f.name] = (str if f.required else Optional[str], field_info)
