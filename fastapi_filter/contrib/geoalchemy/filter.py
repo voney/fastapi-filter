@@ -13,7 +13,7 @@ from ..sqlalchemy.filter import Filter as SQLAlchemyFilter, _orm_operator_transf
 def bbox_to_geometry(bbox: List[float]):
     # ST_MakeEnvelope(float xmin, float ymin, float xmax, float ymax, integer srid=unknown);
     # SRID 4326 means we're speaking lat/long in the coordinate system.
-    functions.ST_MakeEnvelope(bbox[0], bbox[1], bbox[2], bbox[3], srid=4326)
+    return functions.ST_MakeEnvelope(bbox[0], bbox[1], bbox[2], bbox[3], srid=4326)
 
 
 _orm_operator_transformer = {
